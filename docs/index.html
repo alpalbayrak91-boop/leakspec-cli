@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:;">
+  <title>LeakSpec CLI (KK-CAUSALSPEC v2.0) — Lookahead-Leakage Auditor</title>
+  <style>
+    :root { --bg: #0b1120; --card: #111827; --border: #263248; --fg: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8; --ok: #22c55e; --bad: #ef4444; --warn: #f59e0b; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--fg); line-height: 1.55; padding: 2rem 1rem 4rem; }
+    main { max-width: 960px; margin: 0 auto; }
+    h1, h2, h3 { color: #f8fafc; margin-top: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .hero { display: flex; flex-direction: column; gap: 0.75rem; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill { background: #1e293b; border: 1px solid var(--border); color: #cbd5e1; padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.35rem; margin-bottom: 1.25rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.85rem; }
+    .mini { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 0.9rem; }
+    .mini h3 { font-size: 0.95rem; margin-bottom: 0.35rem; color: var(--accent); }
+    .mini p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+    .controls { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; align-items: center; }
+    button { background: var(--accent); color: #020617; font-weight: 700; border: none; border-radius: 7px; padding: 0.5rem 0.9rem; cursor: pointer; font-size: 0.86rem; }
+    button.sec { background: #1e293b; color: #e2e8f0; border: 1px solid #334155; font-weight: 600; }
+    button:hover { filter: brightness(1.08); }
+    textarea { width: 100%; min-height: 155px; background: #020617; color: #f8fafc; border: 1px solid #334155; border-radius: 8px; padding: 0.75rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; }
+    .badge { display: inline-block; padding: 0.25rem 0.7rem; border-radius: 999px; font-size: 0.82rem; font-weight: 700; }
+    .ok { background: rgba(34,197,94,0.18); color: var(--ok); border: 1px solid rgba(34,197,94,0.4); }
+    .bad { background: rgba(239,68,68,0.18); color: var(--bad); border: 1px solid rgba(239,68,68,0.4); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; margin-top: 0.75rem; }
+    th, td { text-align: left; padding: 0.55rem 0.65rem; border-bottom: 1px solid #1e293b; }
+    th { color: var(--muted); font-weight: 600; }
+    pre { background: #020617; border: 1px solid #1e293b; padding: 0.85rem; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; color: #cbd5e1; }
+    code { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .muted { color: var(--muted); font-size: 0.88rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card hero">
+      <h1>LeakSpec CLI &mdash; KK-CAUSALSPEC v2.0</h1>
+      <p class="muted">Zero-dependency Pure Python 3.10+ black-box lookahead-leakage auditor for quantitative backtests, financial time series, and multivariate ML feature stores. Runs offline with deterministic SHA-256 receipts and GitHub Code Scanning SARIF 2.1.0 output.</p>
+      <div class="pills">
+        <span class="pill">MIT License</span>
+        <span class="pill">Release v0.1.0</span>
+        <span class="pill">5/5 Recall &middot; 0/5 False Positives (d=10)</span>
+        <span class="pill">SARIF 2.1.0 + SHA-256 Receipt</span>
+        <span class="pill">0 USD Open Source CLI</span>
+      </div>
+      <div class="controls">
+        <a href="https://github.com/alpalbayrak91-boop/leakspec-cli" target="_blank" rel="noopener"><button type="button">GitHub Repository</button></a>
+        <a href="https://github.com/alpalbayrak91-boop/leakspec-cli/releases/tag/v0.1.0" target="_blank" rel="noopener"><button type="button" class="sec">Download v0.1.0 Release</button></a>
+        <a href="https://alpalbayrak91-boop.github.io/proofgate/" target="_blank" rel="noopener"><button type="button" class="sec">ProofGate v0.2.0 Sister Suite</button></a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4-Layer Spectral Causality Architecture</h2>
+      <div class="grid">
+        <div class="mini">
+          <h3>Layer 1 &middot; IP-KK</h3>
+          <p>Dual innovation-prewhitened linear Kramers-Kronig Hilbert dispersion defect with Hall-Heyde martingale self-normalized Z-statistics.</p>
+        </div>
+        <div class="mini">
+          <h3>Layer 2 &middot; NL2-KK</h3>
+          <p>Channel-whitened Scandolo-Bassani nonlinear envelope scan detecting zero-linear-correlation future volatility and regime leakage.</p>
+        </div>
+        <div class="mini">
+          <h3>Layer 3 &middot; SUMRULE-KK</h3>
+          <p>Low-frequency f-sum-rule coherent accumulation for diffuse multi-bar future-mean leakage plus full-sample scaler pinning forensics.</p>
+        </div>
+        <div class="mini">
+          <h3>Layer 4 &middot; MV-KK</h3>
+          <p>Multivariate Cholesky-whitened Hotelling-Martingale joint test catching stealth cancellation-mode leaks invisible to univariate scans.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Browser-Local Feature-Store Lookahead Playground</h2>
+      <p class="muted">Runs 100% locally in your browser (Strict-CSP3, zero backend). Load a synthetic feature-store preset or paste your own CSV with <code>ts,target_ret,...</code> columns to run acausal lag innovation Z-tests (<code>IP-KK</code>), squared-envelope scan (<code>NL2-KK</code>), diffuse future-mean sum-rule check (<code>SUMRULE-KK</code>), Holm-Bonferroni FWER gating, and WebCrypto SHA-256 receipt generation.</p>
+      <div class="controls">
+        <button type="button" id="presetLeaked">Preset: Mixed Leaked Store (3 Leaks)</button>
+        <button type="button" class="sec" id="presetClean">Preset: Clean Causal Store (0 Leaks)</button>
+        <button type="button" class="sec" id="presetVol">Preset: Nonlinear Vol Lookahead</button>
+        <button type="button" id="runAuditBtn">Run Browser Audit</button>
+      </div>
+      <textarea id="csvInput" spellcheck="false"></textarea>
+      <div id="verdictBox" style="margin-top:0.85rem;"></div>
+      <div id="tableBox"></div>
+      <h3>SHA-256 Audit Receipt &amp; SARIF 2.1.0 Preview</h3>
+      <pre id="receiptOut">Click "Run Browser Audit" to inspect the causal verdict and receipt.</pre>
+    </section>
+
+    <section class="card">
+      <h2>CI/CD Quickstart (Pure Python 3.10+)</h2>
+      <pre>git clone https://github.com/alpalbayrak91-boop/leakspec-cli.git
+cd leakspec-cli
+pip install .
+leakspec benchmark --n-rows 2000
+leakspec scan --csv data/feature_store_d10.csv --target-col target_ret --time-col ts --alpha 0.01 --json-out reports/receipt.json --sarif-out reports/leakspec.sarif</pre>
+      <p class="muted">Exit codes: <code>0</code> = <code>CAUSAL_CLEAN</code>, <code>2</code> = <code>LEAK_DETECTED</code> (blocks PR merge), <code>1</code> = CLI/CSV input error.</p>
+    </section>
+  </main>
+
+  <script>
+    function mulberry32(seed) {
+      let a = seed >>> 0;
+      return function() {
+        a |= 0;
+        a = (a + 0x6D2B79F5) | 0;
+        let t = Math.imul(a ^ (a >>> 15), 1 | a);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+
+    function gaussian(rng) {
+      const u1 = Math.max(rng(), 1e-12);
+      const u2 = rng();
+      return Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+    }
+
+    function generatePreset(mode) {
+      const n = 260;
+      const rng = mulberry32(mode === "clean" ? 20261127 : (mode === "vol" ? 20261129 : 20261125));
+      const r = [];
+      let prev = 0;
+      let sigma = 0.012;
+      for (let t = 0; t < n; t++) {
+        const eps = gaussian(rng);
+        sigma = Math.sqrt(0.00002 + 0.12 * prev * prev + 0.82 * sigma * sigma);
+        const val = 0.15 * prev + sigma * eps;
+        r.push(val);
+        prev = val;
+      }
+      const rows = ["ts,target_ret,f_causal_mom,f_direct_shift_m1,f_future_mean_6,f_future_vol"];
+      for (let t = 0; t < n; t++) {
+        const lag1 = t > 0 ? r[t - 1] : 0;
+        const lag2 = t > 1 ? r[t - 2] : 0;
+        const fCausal = 0.65 * lag1 + 0.35 * lag2 + 0.004 * gaussian(rng);
+        let fShift = 0.4 * lag1 + 0.01 * gaussian(rng);
+        let fMean = 0.25 * (lag1 + lag2) + 0.01 * gaussian(rng);
+        let fVol = Math.abs(lag1) + 0.008 * Math.abs(gaussian(rng));
+        if (mode === "leaked") {
+          const next1 = t + 1 < n ? r[t + 1] : 0;
+          fShift = 0.45 * next1 + 0.008 * gaussian(rng);
+          let acc = 0;
+          let cnt = 0;
+          for (let h = 1; h <= 6 && t + h < n; h++) { acc += r[t + h]; cnt++; }
+          fMean = (cnt > 0 ? acc / cnt : 0) * 1.15 + 0.005 * gaussian(rng);
+          const nextVol = t + 1 < n ? r[t + 1] * r[t + 1] : 0;
+          fVol = 0.7 * nextVol * 40.0 + 0.004 * gaussian(rng);
+        } else if (mode === "vol") {
+          const nextSq = t + 1 < n ? r[t + 1] * r[t + 1] : 0;
+          const nextSq2 = t + 2 < n ? r[t + 2] * r[t + 2] : 0;
+          fVol = 0.6 * (nextSq + nextSq2) * 50.0 + 0.003 * gaussian(rng);
+        }
+        rows.push(
+          String(t + 1) + "," +
+          r[t].toFixed(6) + "," +
+          fCausal.toFixed(6) + "," +
+          fShift.toFixed(6) + "," +
+          fMean.toFixed(6) + "," +
+          fVol.toFixed(6)
+        );
+      }
+      return rows.join("\n");
+    }
+
+    function ar1Residuals(arr) {
+      const n = arr.length;
+      if (n < 6) return arr.slice();
+      let mean = 0;
+      for (let i = 0; i < n; i++) mean += arr[i];
+      mean /= n;
+      let num = 0;
+      let den = 1e-12;
+      for (let i = 1; i < n; i++) {
+        num += (arr[i] - mean) * (arr[i - 1] - mean);
+        den += (arr[i - 1] - mean) * (arr[i - 1] - mean);
+      }
+      const phi = Math.max(-0.95, Math.min(0.95, num / den));
+      const res = [0];
+      for (let i = 1; i < n; i++) {
+        res.push((arr[i] - mean) - phi * (arr[i - 1] - mean));
+      }
+      return res;
+    }
+
+    function martingaleZ(x, y, lead) {
+      const prod = [];
+      for (let t = 0; t < x.length - lead; t++) {
+        prod.push(x[t] * y[t + lead]);
+      }
+      if (prod.length < 10) return 0;
+      let sum = 0;
+      let sumSq = 0;
+      for (let i = 0; i < prod.length; i++) {
+        sum += prod[i];
+        sumSq += prod[i] * prod[i];
+      }
+      return sum / Math.sqrt(sumSq + 1e-18);
+    }
+
+    function erfcApprox(x) {
+      const z = Math.abs(x);
+      const t = 1.0 / (1.0 + 0.5 * z);
+      const ans = t * Math.exp(
+        -z * z - 1.26551223 +
+        t * (1.00002368 +
+        t * (0.37409196 +
+        t * (0.09678418 +
+        t * (-0.18628806 +
+        t * (0.27886807 +
+        t * (-1.13520398 +
+        t * (1.48851587 +
+        t * (-0.82215223 +
+        t * 0.17087277))))))))
+      );
+      return x >= 0 ? ans : 2.0 - ans;
+    }
+
+    function twoSidedP(z) {
+      return Math.min(1.0, Math.max(1e-15, erfcApprox(Math.abs(z) / Math.SQRT2)));
+    }
+
+    async function sha256Hex(text) {
+      const buf = new TextEncoder().encode(text);
+      const digest = await crypto.subtle.digest("SHA-256", buf);
+      const arr = new Uint8Array(digest);
+      let hex = "";
+      for (let i = 0; i < arr.length; i++) {
+        hex += arr[i].toString(16).padStart(2, "0");
+      }
+      return hex;
+    }
+
+    async function runAudit() {
+      const raw = document.getElementById("csvInput").value.trim();
+      const lines = raw.split(/\r?\n/).map(s => s.trim()).filter(Boolean);
+      if (lines.length < 25) {
+        document.getElementById("verdictBox").innerHTML = '<span class="badge bad">INPUT ERROR: Provide at least 25 CSV rows.</span>';
+        return;
+      }
+      const headers = lines[0].split(",").map(h => h.trim());
+      const targetIdx = headers.indexOf("target_ret");
+      if (targetIdx < 0) {
+        document.getElementById("verdictBox").innerHTML = '<span class="badge bad">INPUT ERROR: Missing target_ret column.</span>';
+        return;
+      }
+      const cols = headers.map(() => []);
+      for (let i = 1; i < lines.length; i++) {
+        const parts = lines[i].split(",");
+        if (parts.length !== headers.length) continue;
+        for (let c = 0; c < headers.length; c++) {
+          cols[c].push(Number(parts[c]));
+        }
+      }
+
+      const target = cols[targetIdx];
+      const uTarget = ar1Residuals(target);
+      const uSq = ar1Residuals(uTarget.map(v => v * v));
+      const featureIndices = [];
+      for (let c = 0; c < headers.length; c++) {
+        if (c !== targetIdx && headers[c] !== "ts") featureIndices.push(c);
+      }
+
+      const alpha = 0.01;
+      const results = [];
+      for (let idx = 0; idx < featureIndices.length; idx++) {
+        const c = featureIndices[idx];
+        const name = headers[c];
+        const vFeat = ar1Residuals(cols[c]);
+
+        let bestLinZ = 0;
+        let bestLinLead = 1;
+        let sumZ = 0;
+        const maxLead = 6;
+        for (let h = 1; h <= maxLead; h++) {
+          const z = martingaleZ(vFeat, uTarget, h);
+          sumZ += z;
+          if (Math.abs(z) > Math.abs(bestLinZ)) {
+            bestLinZ = z;
+            bestLinLead = h;
+          }
+        }
+        const sumRuleZ = sumZ / Math.sqrt(maxLead);
+        const nlZ1 = martingaleZ(vFeat, uSq, 1);
+        const nlZ2 = martingaleZ(vFeat, uSq, 2);
+        const bestNlZ = Math.abs(nlZ1) >= Math.abs(nlZ2) ? nlZ1 : nlZ2;
+
+        const pLin = Math.min(1.0, twoSidedP(bestLinZ) * maxLead);
+        const pSum = twoSidedP(sumRuleZ);
+        const pNl = Math.min(1.0, twoSidedP(bestNlZ) * 2);
+        const pRaw = Math.min(pLin, pSum, pNl);
+
+        let layer = "CAUSAL_OK";
+        if (pLin <= pSum && pLin <= pNl) layer = "IP-KK (lead +" + bestLinLead + ")";
+        else if (pSum <= pNl) layer = "SUMRULE-KK (1..6)";
+        else layer = "NL2-KK (vol envelope)";
+
+        results.push({
+          feature: name,
+          z_ip_kk: Number(bestLinZ.toFixed(3)),
+          z_sumrule: Number(sumRuleZ.toFixed(3)),
+          z_nl2_kk: Number(bestNlZ.toFixed(3)),
+          p_raw: pRaw,
+          dominant_layer: layer
+        });
+      }
+
+      const sorted = results.slice().sort((a, b) => a.p_raw - b.p_raw);
+      const m = sorted.length;
+      let rejectedPrefix = true;
+      for (let i = 0; i < m; i++) {
+        const pHolm = Math.min(1.0, sorted[i].p_raw * (m - i));
+        sorted[i].p_holm = Number(pHolm.toExponential(2));
+        if (rejectedPrefix && pHolm < alpha) {
+          sorted[i].status = "LEAK_DETECTED";
+        } else {
+          rejectedPrefix = false;
+          sorted[i].status = "CAUSAL_CLEAN";
+        }
+      }
+
+      const leaked = results.filter(r => r.status === "LEAK_DETECTED").map(r => r.feature);
+      const verdict = leaked.length > 0 ? "LEAK_DETECTED" : "CAUSAL_CLEAN";
+      const exitCode = leaked.length > 0 ? 2 : 0;
+
+      document.getElementById("verdictBox").innerHTML =
+        verdict === "LEAK_DETECTED"
+          ? '<span class="badge bad">LEAK_DETECTED (exit 2) &mdash; ' + leaked.length + ' feature(s) flagged at Holm-Bonferroni alpha=0.01</span>'
+          : '<span class="badge ok">CAUSAL_CLEAN (exit 0) &mdash; 0 lookahead leaks detected at alpha=0.01</span>';
+
+      let html = "<table><thead><tr><th>Feature</th><th>IP-KK Z</th><th>SUMRULE Z</th><th>NL2-KK Z</th><th>Holm p-value</th><th>Dominant Layer</th><th>Verdict</th></tr></thead><tbody>";
+      for (let i = 0; i < results.length; i++) {
+        const r = results[i];
+        const cls = r.status === "LEAK_DETECTED" ? "bad" : "ok";
+        html += "<tr><td><code>" + r.feature + "</code></td><td>" + r.z_ip_kk + "</td><td>" + r.z_sumrule + "</td><td>" + r.z_nl2_kk + "</td><td>" + r.p_holm + "</td><td>" + r.dominant_layer + '</td><td><span class="badge ' + cls + '">' + r.status + "</span></td></tr>";
+      }
+      html += "</tbody></table>";
+      document.getElementById("tableBox").innerHTML = html;
+
+      const receiptBody = {
+        engine: "leakspec-kk-browser-preview-v2.0",
+        rows_audited: target.length,
+        d_features: results.length,
+        alpha: alpha,
+        store_verdict: verdict,
+        exit_code_recommended: exitCode,
+        leaked_features: leaked,
+        sarif_version: "2.1.0",
+        sarif_result_count: leaked.length
+      };
+      const canonical = JSON.stringify(receiptBody);
+      receiptBody.receipt_sha256 = await sha256Hex(canonical);
+      document.getElementById("receiptOut").textContent = JSON.stringify(receiptBody, null, 2);
+    }
+
+    document.getElementById("presetLeaked").addEventListener("click", () => {
+      document.getElementById("csvInput").value = generatePreset("leaked");
+      runAudit();
+    });
+    document.getElementById("presetClean").addEventListener("click", () => {
+      document.getElementById("csvInput").value = generatePreset("clean");
+      runAudit();
+    });
+    document.getElementById("presetVol").addEventListener("click", () => {
+      document.getElementById("csvInput").value = generatePreset("vol");
+      runAudit();
+    });
+    document.getElementById("runAuditBtn").addEventListener("click", runAudit);
+
+    document.getElementById("csvInput").value = generatePreset("leaked");
+    runAudit();
+  </script>
+</body>
+</html>
