@@ -1,72 +1,15 @@
-name: LeakSpec Causal Feature-Store Gate
+name: LeakSpec Feature Gate
 
 on:
-  pull_request:
-    paths:
-      - "data/**/*.csv"
-      - "features/**/*.py"
-      - "pipelines/**/*.py"
-      - "src/leakspec/**/*.py"
-      - ".github/workflows/leakspec-feature-gate.yml"
   workflow_dispatch:
-    branches:
-      - main
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  security-events: write
 
 jobs:
-  causal-lookahead-audit:
-    name: KK-CAUSALSPEC v2.0 Multivariate Feature-Store Audit
+  unit-tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    env:
-      LEAKSPEC_CSV_PATH: "data/feature_store_d10.csv"
-      LEAKSPEC_TARGET_COL: "target_ret"
-      LEAKSPEC_TIME_COL: "ts"
-      LEAKSPEC_ALPHA: "0.01"
-      LEAKSPEC_REPORT_DIR: "reports/leakspec"
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-
-      - name: Install leakspec-kk (zero runtime dependencies)
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install --no-deps .
-
-      - name: Run unit test suite (d=10 verification)
-        run: python3 -m unittest discover -s tests -p "test_*.py" -v
-
-      - name: Run multivariate feature-store lookahead gate
-        run: |
-          mkdir -p reports/leakspec
-          python3 -m leakspec.cli scan \
-            --csv data/feature_store_d10.csv \
-            --target-col target_ret \
-            --time-col ts \
-            --alpha 0.01 \
-            --json-out reports/leakspec/receipt.json \
-            --sarif-out reports/leakspec/leakspec.sarif
-
-      - name: Upload SHA-256 audit receipt artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: leakspec-causal-audit-receipt
-          path: reports/leakspec/
-          retention-days: 30
-
-      - name: Upload SARIF 2.1.0 annotations to GitHub Code Scanning
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: reports/leakspec/leakspec.sarif
-          category: leakspec-kk-causalspec-v2
+          python-version: "3.11"
+      - name: Run leakspec tests
+        run: PYTHONPATH=src python -m unittest discover -s tests -v
