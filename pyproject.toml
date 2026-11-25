@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leakspec-kk"
+version = "2.0.0"
+description = "Zero-dependency Kramers-Kronig spectral dispersion and multivariate Hotelling-Martingale lookahead-leakage auditor for time-series feature stores."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+  {name = "AlpLab Research"}
+]
+keywords = [
+  "lookahead-bias",
+  "data-leakage",
+  "kramers-kronig",
+  "time-series",
+  "feature-store",
+  "quant-finance",
+  "mlops",
+  "causality"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Mathematics",
+  "Topic :: Scientific/Engineering :: Physics",
+  "Topic :: Software Development :: Quality Assurance"
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+leakspec = "leakspec.cli:main"
+
+# Add [project.urls] once the public repository URL is live.
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
