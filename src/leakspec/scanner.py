@@ -13,7 +13,15 @@ import random
 from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Mapping, Sequence, Tuple
 
-from .core import _mean, _std, audit_causality, mv_kk_joint_audit
+from .core import (
+    _mean,
+    _std,
+    _validate_finite_real,
+    _validate_finite_series,
+    _validate_int_ge,
+    audit_causality,
+    mv_kk_joint_audit,
+)
 
 
 def _parse_float(raw: str | None) -> float | None:
@@ -163,13 +171,23 @@ def audit_feature_store(
       - Layer 4 MV-KK Joint Cholesky-Whitened Hotelling-Martingale across active features
       - Store-level Holm-Bonferroni FWER gate (m = d_active + 1) + per-feature BH-FDR triage
     """
+    alpha_f = _validate_finite_real(alpha, "alpha")
+    if not (0.0 < alpha_f < 1.0):
+        raise ValueError(f"alpha must be in (0.0, 1.0), got {alpha!r}")
+    _validate_int_ge(ar_p, "ar_p", 0)
+    _validate_int_ge(causal_lags, "causal_lags", 0)
+    _validate_int_ge(acausal_lags, "acausal_lags", 1)
+    _validate_int_ge(sumrule_horizon, "sumrule_horizon", 1)
+    target = _validate_finite_series(target, "target")
+
     active_features: Dict[str, Sequence[float]] = {}
     skipped_features: Dict[str, str] = {}
     for fname, series in features.items():
-        if _std(series) < 1e-12:
+        clean_series = _validate_finite_series(series, f"features[{fname}]")
+        if _std(clean_series) < 1e-12:
             skipped_features[fname] = "CONSTANT_ZERO_VARIANCE"
         else:
-            active_features[fname] = series
+            active_features[fname] = clean_series
 
     raw_results: Dict[str, Dict[str, object]] = {}
     p_items_features: List[Tuple[str, float]] = []
@@ -338,6 +356,7 @@ def audit_csv_file(
 def build_sarif_report(audit_report: Mapping[str, object]) -> Dict[str, object]:
     """Builds a GitHub Code Scanning compliant SARIF 2.1.0 document from a store audit report."""
     source_uri = str(audit_report.get("source", "feature_store.csv"))
+    repo_uri = "https://github.com/alpalbayrak91-boop/leakspec-cli"
     results: List[Dict[str, object]] = []
 
     for row in audit_report.get("features", []):
@@ -347,15 +366,18 @@ def build_sarif_report(audit_report: Mapping[str, object]) -> Dict[str, object]:
             lag = row["estimated_leak_lag"]
             p_h = row["p_store_holm"]
             q_bh = row["q_bh_fdr"]
+            msg_txt = (
+                f"Lookahead leakage detected in feature '{fname}' "
+                f"(trigger={trig}, lag={lag}, p_holm={p_h}, q_bh={q_bh})."
+            )
+            fp_hex = hashlib.sha256(
+                f"LEAKSPEC-KK-UNIVARIATE|{source_uri}|feature={fname}|{msg_txt}".encode("utf-8")
+            ).hexdigest()[:32]
             results.append({
                 "ruleId": "LEAKSPEC-KK-UNIVARIATE",
+                "ruleIndex": 0,
                 "level": "error",
-                "message": {
-                    "text": (
-                        f"Lookahead leakage detected in feature '{fname}' "
-                        f"(trigger={trig}, lag={lag}, p_holm={p_h}, q_bh={q_bh})."
-                    )
-                },
+                "message": {"text": msg_txt},
                 "locations": [
                     {
                         "physicalLocation": {
@@ -364,6 +386,9 @@ def build_sarif_report(audit_report: Mapping[str, object]) -> Dict[str, object]:
                         }
                     }
                 ],
+                "partialFingerprints": {
+                    "primaryLocationLineHash": fp_hex,
+                },
                 "properties": {
                     "feature": fname,
                     "dominant_trigger": trig,
@@ -376,16 +401,19 @@ def build_sarif_report(audit_report: Mapping[str, object]) -> Dict[str, object]:
     mv = audit_report.get("mv_kk_joint", {})
     if mv.get("triggered"):
         suspects = mv.get("top_suspects", [])
+        msg_mv = (
+            f"Multivariate joint lookahead detected by MV-KK "
+            f"(best_lag={mv.get('best_lag')}, T2={mv.get('best_t2')}, "
+            f"p_holm={mv.get('p_store_holm')}, top_suspects={suspects})."
+        )
+        fp_mv = hashlib.sha256(
+            f"LEAKSPEC-MV-KK-JOINT|{source_uri}|mv_joint|{msg_mv}".encode("utf-8")
+        ).hexdigest()[:32]
         results.append({
             "ruleId": "LEAKSPEC-MV-KK-JOINT",
+            "ruleIndex": 1,
             "level": "error",
-            "message": {
-                "text": (
-                    f"Multivariate joint lookahead detected by MV-KK "
-                    f"(best_lag={mv.get('best_lag')}, T2={mv.get('best_t2')}, "
-                    f"p_holm={mv.get('p_store_holm')}, top_suspects={suspects})."
-                )
-            },
+            "message": {"text": msg_mv},
             "locations": [
                 {
                     "physicalLocation": {
@@ -394,6 +422,9 @@ def build_sarif_report(audit_report: Mapping[str, object]) -> Dict[str, object]:
                     }
                 }
             ],
+            "partialFingerprints": {
+                "primaryLocationLineHash": fp_mv,
+            },
             "properties": {
                 "best_lag": mv.get("best_lag"),
                 "best_t2": mv.get("best_t2"),
@@ -402,22 +433,26 @@ def build_sarif_report(audit_report: Mapping[str, object]) -> Dict[str, object]:
         })
 
     return {
+        "\x24schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
         "version": "2.1.0",
         "runs": [
             {
                 "tool": {
                     "driver": {
                         "name": "LeakSpec KK-CAUSALSPEC",
-                        "version": "2.0.0",
+                        "version": "2.7.0",
+                        "informationUri": repo_uri,
                         "rules": [
                             {
                                 "id": "LEAKSPEC-KK-UNIVARIATE",
+                                "helpUri": f"{repo_uri}#leakspec-kk-univariate",
                                 "shortDescription": {
                                     "text": "Univariate Kramers-Kronig spectral lookahead leakage in feature column"
                                 },
                             },
                             {
                                 "id": "LEAKSPEC-MV-KK-JOINT",
+                                "helpUri": f"{repo_uri}#leakspec-mv-kk-joint",
                                 "shortDescription": {
                                     "text": "Multivariate Hotelling-Martingale joint/cancellation lookahead leakage"
                                 },

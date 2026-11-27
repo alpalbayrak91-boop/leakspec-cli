@@ -1,5 +1,19 @@
-"""LeakSpec (KK-CAUSALSPEC v2.0) - Kramers-Kronig Black-Box Lookahead Auditor."""
+"""LeakSpec (v2.7.0) - 5-Layer Temporal Leakage, CPCV Embargo, Contamination & Lean 4 Causal-Mask Auditor."""
 
+from .contamination_lsh import (
+    ContaminationIndex,
+    RecordFingerprint,
+    audit_against_contamination_index,
+    audit_train_test_contamination,
+    build_contamination_index,
+    canonicalize_text,
+    containment_ratio,
+    extract_canonical_ngrams,
+    hamming_distance64,
+    jaccard_similarity,
+    minhash_signature,
+    simhash64,
+)
 from .core import (
     audit_causality,
     chi2_survival,
@@ -8,6 +22,31 @@ from .core import (
     kk_spectral_defect_from_impulse,
     mv_kk_joint_audit,
 )
+from .cpcv_embargo import (
+    CPCVSplit,
+    LabelSpan,
+    audit_cpcv_splits,
+    compute_post_purge_anchor,
+    cpcv_num_backtest_paths,
+    cpcv_num_splits,
+    estimate_cpcv_pbo,
+    generate_cpcv_splits,
+    reconstruct_cpcv_paths,
+)
+from .sarif_taxonomy import (
+    EMPTY_RFC6962_MERKLE_ROOT,
+    OASIS_SARIF_210_SCHEMA_URI,
+    SARIF_RULE_TAXONOMY,
+    build_sarif_210_report,
+    canonical_jcs_bytes,
+    canonical_jcs_dumps,
+    emit_lean4_causal_mask_theorem,
+    rfc6962_leaf_hash,
+    rfc6962_merkle_root_hex,
+    rfc6962_node_hash,
+    run_five_layer_audit,
+    verify_causal_mask_matrix,
+)
 from .scanner import (
     audit_csv_file,
     audit_feature_store,
@@ -15,19 +54,62 @@ from .scanner import (
     generate_synthetic_d10_csv,
     load_feature_store_csv,
 )
+from .target_mi_spectral import (
+    audit_multifeature_mi_spectral,
+    audit_target_mi_and_spectral_causality,
+    discrete_kramers_kronig_hilbert_defect,
+    normalized_mutual_information,
+)
 
-__version__ = "2.0.0"
+__version__ = "2.7.0"
 __all__ = [
+    "CPCVSplit",
+    "ContaminationIndex",
+    "EMPTY_RFC6962_MERKLE_ROOT",
+    "LabelSpan",
+    "OASIS_SARIF_210_SCHEMA_URI",
+    "RecordFingerprint",
+    "SARIF_RULE_TAXONOMY",
     "__version__",
+    "audit_against_contamination_index",
     "audit_causality",
+    "audit_cpcv_splits",
     "audit_csv_file",
     "audit_feature_store",
+    "audit_multifeature_mi_spectral",
+    "audit_target_mi_and_spectral_causality",
+    "audit_train_test_contamination",
+    "build_contamination_index",
+    "build_sarif_210_report",
     "build_sarif_report",
+    "canonical_jcs_bytes",
+    "canonical_jcs_dumps",
+    "canonicalize_text",
     "chi2_survival",
+    "compute_post_purge_anchor",
+    "containment_ratio",
+    "cpcv_num_backtest_paths",
+    "cpcv_num_splits",
     "discrete_kk_hilbert_freq",
+    "discrete_kramers_kronig_hilbert_defect",
+    "emit_lean4_causal_mask_theorem",
+    "estimate_cpcv_pbo",
+    "extract_canonical_ngrams",
     "fft_radix2",
+    "generate_cpcv_splits",
     "generate_synthetic_d10_csv",
+    "hamming_distance64",
+    "jaccard_similarity",
     "kk_spectral_defect_from_impulse",
     "load_feature_store_csv",
+    "minhash_signature",
     "mv_kk_joint_audit",
+    "normalized_mutual_information",
+    "reconstruct_cpcv_paths",
+    "rfc6962_leaf_hash",
+    "rfc6962_merkle_root_hex",
+    "rfc6962_node_hash",
+    "run_five_layer_audit",
+    "simhash64",
+    "verify_causal_mask_matrix",
 ]

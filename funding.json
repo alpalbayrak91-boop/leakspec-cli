@@ -1,0 +1,35 @@
+{
+  "version": "v1.1.0",
+  "entity": {
+    "type": "individual",
+    "role": "maintainer",
+    "name": "Alp Albayrak",
+    "email": "alpalbayrak91@gmail.com",
+    "description": "Independent researcher and maintainer building open-source temporal leakage, benchmark contamination, and formal Lean 4 verification tooling.",
+    "webpageUrl": {
+      "url": "https://alpalbayrak91-boop.github.io/leakspec-cli/",
+      "wellKnown": ""
+    }
+  },
+  "projects": [
+    {
+      "guid": "leakspec-cli",
+      "name": "LeakSpec-CLI",
+      "description": "Zero-dependency 5-layer causal, statistical, and benchmark-contamination auditor with post-horizon CPCV & PBO, Westfall-Young NMI & Kramers-Kronig dispersion, Pigeonhole Multi-Block SimHash64/MinHash-LSH, OASIS SARIF v2.1.0, RFC 8785/6962 cryptographic digests, and Pure-Init Lean 4 proofs.",
+      "webpageUrl": {
+        "url": "https://alpalbayrak91-boop.github.io/leakspec-cli/",
+        "wellKnown": ""
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/alpalbayrak91-boop/leakspec-cli",
+        "wellKnown": ""
+      },
+      "licenses": ["spdx:MIT"],
+      "tags": ["mlops", "time-series", "benchmark-contamination", "formal-verification", "lean4", "sarif", "security"]
+    }
+  ],
+  "funding": {
+    "channels": [],
+    "plans": []
+  }
+}

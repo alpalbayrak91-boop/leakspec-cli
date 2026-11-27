@@ -1,0 +1,28 @@
+{
+  "title": "LeakSpec v2.7.0: 5-Layer Causal, Statistical, Benchmark-Contamination, OASIS SARIF v2.1.0, and Machine-Checked Lean 4 Leakage Auditor",
+  "upload_type": "software",
+  "description": "Zero-dependency Pure Python 3.10+ MIT suite uniting: (1) Lopez de Prado (2018) Combinatorial Purged Cross-Validation (CPCV) with exact post-horizon embargo (post_purge_anchor = max_test_label_end) and Bailey et al. (2017) Probability of Backtest Overfitting (PBO) rank-logit estimator, (2) tie-aware mid-rank Mutual Information with Phipson-Smyth (2010) permutation floor, O(n) circular-shift Westfall-Young (1993) max-lag permutation test, Wilks G-test, discrete Hilbert / Kramers-Kronig (Toll 1956) spectral dispersion detector, and Holm-Bonferroni FWER control, (3) sublinear Pigeonhole Multi-Block SimHash64 (Charikar 2002) + MinHash-LSH (Broder 1997) + Unicode/decimal-masked n-gram benchmark contamination auditing, (4) order-invariant OASIS SARIF v2.1.0 export (LS-TIME-001..008) sealed with RFC 8785 JCS and RFC 6962 SHA-256 Merkle digests, and (5) 14 machine-checked Pure-Init Lean 4 (--trust=0, 0 Classical.choice) soundness theorems.",
+  "creators": [
+    {
+      "name": "Albayrak, Alp",
+      "orcid": "0009-0008-9737-4477"
+    }
+  ],
+  "keywords": [
+    "lookahead-bias",
+    "combinatorial-purged-cross-validation",
+    "backtest-overfitting",
+    "Kramers-Kronig",
+    "Westfall-Young",
+    "benchmark-contamination",
+    "SimHash",
+    "MinHash-LSH",
+    "SARIF",
+    "RFC 8785",
+    "RFC 6962",
+    "Lean 4"
+  ],
+  "license": "MIT",
+  "version": "2.7.0",
+  "access_right": "open"
+}

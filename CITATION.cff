@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "LeakSpec v2.7.0: 5-Layer Causal, Statistical, Benchmark-Contamination, SARIF v2.1.0, and Machine-Checked Lean 4 Leakage Auditor"
+message: "If you use LeakSpec in academic research, quantitative validation, or ML benchmark hygiene pipelines, please cite it below."
+type: software
+authors:
+  - family-names: "Albayrak"
+    given-names: "Alp"
+    orcid: "https://orcid.org/0009-0008-9737-4477"
+license: "MIT"
+repository-code: "https://github.com/alpalbayrak91-boop/leakspec-cli"
+url: "https://alpalbayrak91-boop.github.io/leakspec-cli/"
+version: "2.7.0"
+date-released: "2026-11-27"
+keywords:
+  - lookahead-bias
+  - combinatorial-purged-cross-validation
+  - probability-of-backtest-overfitting
+  - kramers-kronig
+  - westfall-young-permutation
+  - benchmark-contamination
+  - simhash
+  - minhash-lsh
+  - sarif
+  - lean4

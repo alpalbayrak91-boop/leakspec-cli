@@ -2,7 +2,7 @@
 """
 KK-CAUSALSPEC v2.0 Core Spectral Causality Engine
 =================================================
-Pure Python 3.10+ (zero external dependencies, KURAL-3 chr(36)-free).
+Pure Python 3.10+ (zero external dependencies, standard library only).
 
 Layers:
   1. IP-KK (Dual Innovation-Prewhitened Linear Kramers-Kronig Hilbert Defect)
@@ -94,6 +94,33 @@ def kk_spectral_defect_from_impulse(h: Sequence[float]) -> Dict[str, float]:
 
 def _mean(xs: Sequence[float]) -> float:
     return sum(xs) / len(xs) if xs else 0.0
+
+
+def _validate_finite_real(val: object, name: str) -> float:
+    if isinstance(val, bool) or not isinstance(val, (int, float)):
+        raise ValueError(f"{name} must be a finite real number, got {val!r}")
+    fv = float(val)
+    if not math.isfinite(fv):
+        raise ValueError(f"{name} must be finite (no NaN or Inf), got {val!r}")
+    return fv
+
+
+def _validate_int_ge(val: object, name: str, minimum: int) -> int:
+    if isinstance(val, bool) or not isinstance(val, int) or val < minimum:
+        raise ValueError(f"{name} must be an integer >= {minimum}, got {val!r}")
+    return val
+
+
+def _validate_finite_series(xs: Sequence[float], name: str) -> List[float]:
+    out: List[float] = []
+    for idx, v in enumerate(xs):
+        if isinstance(v, bool) or not isinstance(v, (int, float)):
+            raise ValueError(f"{name}[{idx}] must be a finite real number, got {v!r}")
+        fv = float(v)
+        if not math.isfinite(fv):
+            raise ValueError(f"{name}[{idx}] must be finite (no NaN or Inf), got {v!r}")
+        out.append(fv)
+    return out
 
 
 def _std(xs: Sequence[float], mu: float | None = None) -> float:
@@ -410,9 +437,19 @@ def audit_causality(
     sumrule_horizon: int = 24,
 ) -> Dict[str, object]:
     """Full 3-Layer Univariate KK-CAUSALSPEC Audit (IP-KK + NL2-KK + SUMRULE-KK/Pinning)."""
-    n = min(len(x), len(y))
-    x_seq = list(x[:n])
-    y_seq = list(y[:n])
+    alpha_f = _validate_finite_real(alpha, "alpha")
+    if not (0.0 < alpha_f < 1.0):
+        raise ValueError(f"alpha must be in (0.0, 1.0), got {alpha!r}")
+    _validate_int_ge(ar_p, "ar_p", 0)
+    _validate_int_ge(causal_lags, "causal_lags", 0)
+    _validate_int_ge(acausal_lags, "acausal_lags", 1)
+    _validate_int_ge(sumrule_horizon, "sumrule_horizon", 1)
+    x_clean = _validate_finite_series(x, "x")
+    y_clean = _validate_finite_series(y, "y")
+
+    n = min(len(x_clean), len(y_clean))
+    x_seq = x_clean[:n]
+    y_seq = y_clean[:n]
 
     l1 = _martingale_kk_channel_scan(
         x_seq, y_seq, ar_p=ar_p, causal_lags=causal_lags, acausal_lags=acausal_lags, sumrule_horizon=sumrule_horizon
@@ -497,9 +534,18 @@ def mv_kk_joint_audit(
     Detects stealth joint / difference-mode lookahead leakage across d features that
     remains invisible to univariate feature-by-feature screening.
     """
-    names = list(features.keys())
+    _validate_int_ge(ar_p, "ar_p", 0)
+    _validate_int_ge(causal_lags, "causal_lags", 0)
+    _validate_int_ge(acausal_lags, "acausal_lags", 1)
+    target_clean = _validate_finite_series(target, "target")
+    features_clean: Dict[str, List[float]] = {
+        fname: _validate_finite_series(fseries, f"features[{fname}]")
+        for fname, fseries in features.items()
+    }
+
+    names = list(features_clean.keys())
     d = len(names)
-    n = len(target)
+    n = len(target_clean)
     burn = ar_p + causal_lags + 2
     start = burn + ar_p
     if d == 0 or n <= start + acausal_lags + d + 8:
@@ -516,12 +562,12 @@ def mv_kk_joint_audit(
             "attribution_z_at_best_lag": {},
         }
 
-    phi_x, mu_x = fit_ar_levinson(target, ar_p)
-    u = apply_causal_ar_filter(target, phi_x, mu_x)
+    phi_x, mu_x = fit_ar_levinson(target_clean, ar_p)
+    u = apply_causal_ar_filter(target_clean, phi_x, mu_x)
 
     w_cols: List[List[float]] = []
     for name in names:
-        y = features[name]
+        y = features_clean[name]
         v = apply_causal_ar_filter(y, phi_x, _mean(y))
         r, _ = causal_ols_residual(u, v, causal_lags)
         phi_r, mu_r = fit_ar_levinson(r[burn:], ar_p)

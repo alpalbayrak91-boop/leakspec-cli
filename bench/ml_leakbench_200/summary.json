@@ -1,0 +1,1759 @@
+{
+  "benchmark": "ML-ContamAndLeakBench-200",
+  "tool_version": "2.7.0",
+  "n_scenarios": 200,
+  "n_clean": 100,
+  "n_leaky": 100,
+  "confusion_matrix": {
+    "tp": 100,
+    "fp": 0,
+    "tn": 100,
+    "fn": 0
+  },
+  "metrics": {
+    "tpr": 1.0,
+    "tpr_wilson_95_ci": [
+      0.963007,
+      1.0
+    ],
+    "fpr": 0.0,
+    "fpr_wilson_95_ci": [
+      0.0,
+      0.036993
+    ],
+    "tnr_specificity": 1.0,
+    "tnr_wilson_95_ci": [
+      0.963007,
+      1.0
+    ],
+    "precision": 1.0,
+    "precision_wilson_95_ci": [
+      0.963007,
+      1.0
+    ],
+    "recall": 1.0,
+    "recall_wilson_95_ci": [
+      0.963007,
+      1.0
+    ],
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "accuracy_wilson_95_ci": [
+      0.981155,
+      1.0
+    ]
+  },
+  "latency": {
+    "total_wall_sec": 241.0885,
+    "mean_scenario_ms": 850.796,
+    "p50_scenario_ms": 125.87,
+    "p95_scenario_ms": 3966.901,
+    "n6000_corpus_index_build_ms": [
+      20168.85,
+      25159.77,
+      11657.06,
+      12662.98
+    ]
+  },
+  "per_family": {
+    "FAM1_ROLLING_NORMALIZATION": {
+      "n_clean": 20,
+      "n_leaky": 20,
+      "tp": 20,
+      "fn": 0,
+      "fp": 0,
+      "tn": 20,
+      "tpr": 1.0,
+      "tpr_wilson_95_ci": [
+        0.838875,
+        1.0
+      ],
+      "fpr": 0.0,
+      "fpr_wilson_95_ci": [
+        0.0,
+        0.161125
+      ],
+      "mean_latency_ms": 453.178
+    },
+    "FAM2_POST_HORIZON_CPCV_EMBARGO": {
+      "n_clean": 20,
+      "n_leaky": 20,
+      "tp": 20,
+      "fn": 0,
+      "fp": 0,
+      "tn": 20,
+      "tpr": 1.0,
+      "tpr_wilson_95_ci": [
+        0.838875,
+        1.0
+      ],
+      "fpr": 0.0,
+      "fpr_wilson_95_ci": [
+        0.0,
+        0.161125
+      ],
+      "mean_latency_ms": 2.475
+    },
+    "FAM3_MULTIFEATURE_D20_LOOKAHEAD": {
+      "n_clean": 20,
+      "n_leaky": 20,
+      "tp": 20,
+      "fn": 0,
+      "fp": 0,
+      "tn": 20,
+      "tpr": 1.0,
+      "tpr_wilson_95_ci": [
+        0.838875,
+        1.0
+      ],
+      "fpr": 0.0,
+      "fpr_wilson_95_ci": [
+        0.0,
+        0.161125
+      ],
+      "mean_latency_ms": 2901.853
+    },
+    "FAM4_CONTAMINATION_N6000_PLUS": {
+      "n_clean": 20,
+      "n_leaky": 20,
+      "tp": 20,
+      "fn": 0,
+      "fp": 0,
+      "tn": 20,
+      "tpr": 1.0,
+      "tpr_wilson_95_ci": [
+        0.838875,
+        1.0
+      ],
+      "fpr": 0.0,
+      "fpr_wilson_95_ci": [
+        0.0,
+        0.161125
+      ],
+      "mean_latency_ms": 771.539
+    },
+    "FAM5_CENTERED_MA_FILTER": {
+      "n_clean": 20,
+      "n_leaky": 20,
+      "tp": 20,
+      "fn": 0,
+      "fp": 0,
+      "tn": 20,
+      "tpr": 1.0,
+      "tpr_wilson_95_ci": [
+        0.838875,
+        1.0
+      ],
+      "fpr": 0.0,
+      "fpr_wilson_95_ci": [
+        0.0,
+        0.161125
+      ],
+      "mean_latency_ms": 124.936
+    }
+  },
+  "rfc6962_scenarios_merkle_root": "d15252201824e9e165ca219af9297f12f15dad24690bc7a72e6e5fcd14cf1b8f",
+  "scenarios": [
+    {
+      "scenario_id": "CLN-001",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 232.542,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-002",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 213.379,
+      "detail": "clean_causal_norm(mode=trailing_w16)"
+    },
+    {
+      "scenario_id": "CLN-003",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 229.917,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-004",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 199.097,
+      "detail": "clean_causal_norm(mode=trailing_w20)"
+    },
+    {
+      "scenario_id": "CLN-005",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 227.535,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-006",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 307.528,
+      "detail": "clean_causal_norm(mode=trailing_w24)"
+    },
+    {
+      "scenario_id": "CLN-007",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 194.366,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-008",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 235.313,
+      "detail": "clean_causal_norm(mode=trailing_w28)"
+    },
+    {
+      "scenario_id": "CLN-009",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 267.92,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-010",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 235.452,
+      "detail": "clean_causal_norm(mode=trailing_w32)"
+    },
+    {
+      "scenario_id": "CLN-011",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 234.504,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-012",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 209.568,
+      "detail": "clean_causal_norm(mode=trailing_w36)"
+    },
+    {
+      "scenario_id": "CLN-013",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 201.906,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-014",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 239.589,
+      "detail": "clean_causal_norm(mode=trailing_w40)"
+    },
+    {
+      "scenario_id": "CLN-015",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 272.34,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-016",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 139.368,
+      "detail": "clean_causal_norm(mode=trailing_w44)"
+    },
+    {
+      "scenario_id": "CLN-017",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 186.549,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-018",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 243.074,
+      "detail": "clean_causal_norm(mode=trailing_w48)"
+    },
+    {
+      "scenario_id": "CLN-019",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 255.688,
+      "detail": "clean_causal_norm(mode=expanding)"
+    },
+    {
+      "scenario_id": "CLN-020",
+      "ground_truth_leaky": false,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": false,
+      "latency_ms": 216.463,
+      "detail": "clean_causal_norm(mode=trailing_w52)"
+    },
+    {
+      "scenario_id": "CLN-021",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 1.441,
+      "detail": "clean_cpcv(N=6,k=2,H=2,h=2)"
+    },
+    {
+      "scenario_id": "CLN-022",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 3.46,
+      "detail": "clean_cpcv(N=8,k=2,H=4,h=3)"
+    },
+    {
+      "scenario_id": "CLN-023",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 9.863,
+      "detail": "clean_cpcv(N=10,k=2,H=6,h=4)"
+    },
+    {
+      "scenario_id": "CLN-024",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 1.56,
+      "detail": "clean_cpcv(N=6,k=2,H=8,h=5)"
+    },
+    {
+      "scenario_id": "CLN-025",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 3.28,
+      "detail": "clean_cpcv(N=8,k=2,H=6,h=2)"
+    },
+    {
+      "scenario_id": "CLN-026",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 9.526,
+      "detail": "clean_cpcv(N=10,k=2,H=3,h=3)"
+    },
+    {
+      "scenario_id": "CLN-027",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 1.218,
+      "detail": "clean_cpcv(N=6,k=2,H=5,h=4)"
+    },
+    {
+      "scenario_id": "CLN-028",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 2.955,
+      "detail": "clean_cpcv(N=8,k=2,H=7,h=5)"
+    },
+    {
+      "scenario_id": "CLN-029",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 8.499,
+      "detail": "clean_cpcv(N=10,k=2,H=5,h=2)"
+    },
+    {
+      "scenario_id": "CLN-030",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 2.242,
+      "detail": "clean_cpcv(N=6,k=2,H=7,h=3)"
+    },
+    {
+      "scenario_id": "CLN-031",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 4.295,
+      "detail": "clean_cpcv(N=8,k=2,H=4,h=4)"
+    },
+    {
+      "scenario_id": "CLN-032",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 10.828,
+      "detail": "clean_cpcv(N=10,k=2,H=6,h=5)"
+    },
+    {
+      "scenario_id": "CLN-033",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 2.074,
+      "detail": "clean_cpcv(N=6,k=2,H=4,h=2)"
+    },
+    {
+      "scenario_id": "CLN-034",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 4.969,
+      "detail": "clean_cpcv(N=8,k=2,H=6,h=3)"
+    },
+    {
+      "scenario_id": "CLN-035",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 9.553,
+      "detail": "clean_cpcv(N=10,k=2,H=8,h=4)"
+    },
+    {
+      "scenario_id": "CLN-036",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 1.834,
+      "detail": "clean_cpcv(N=6,k=2,H=5,h=5)"
+    },
+    {
+      "scenario_id": "CLN-037",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 3.362,
+      "detail": "clean_cpcv(N=8,k=2,H=3,h=2)"
+    },
+    {
+      "scenario_id": "CLN-038",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 8.411,
+      "detail": "clean_cpcv(N=10,k=2,H=5,h=3)"
+    },
+    {
+      "scenario_id": "CLN-039",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 2.243,
+      "detail": "clean_cpcv(N=6,k=2,H=7,h=4)"
+    },
+    {
+      "scenario_id": "CLN-040",
+      "ground_truth_leaky": false,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": false,
+      "latency_ms": 3.835,
+      "detail": "clean_cpcv(N=8,k=2,H=9,h=5)"
+    },
+    {
+      "scenario_id": "CLN-041",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1110.334,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-042",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1177.102,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-043",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1212.45,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-044",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1763.419,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-045",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1946.896,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-046",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1415.211,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-047",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1058.39,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-048",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1283.218,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-049",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1206.747,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-050",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1043.087,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-051",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1157.984,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-052",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1121.256,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-053",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1029.525,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-054",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1314.02,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-055",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1383.34,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-056",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1217.679,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-057",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1166.787,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-058",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1483.998,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-059",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1411.236,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-060",
+      "ground_truth_leaky": false,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": false,
+      "latency_ms": 1376.16,
+      "detail": "clean_d20_store(2_constant+2_binary_sparse+16_causal)"
+    },
+    {
+      "scenario_id": "CLN-061",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 14918.474,
+      "detail": "clean_benchmark_split(N_train=6120,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-062",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 65.371,
+      "detail": "clean_benchmark_split(N_train=6280,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-063",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 65.98,
+      "detail": "clean_benchmark_split(N_train=6440,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-064",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 76.666,
+      "detail": "clean_benchmark_split(N_train=6600,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-065",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 62.666,
+      "detail": "clean_benchmark_split(N_train=6120,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-066",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 69.184,
+      "detail": "clean_benchmark_split(N_train=6280,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-067",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 64.771,
+      "detail": "clean_benchmark_split(N_train=6440,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-068",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 83.699,
+      "detail": "clean_benchmark_split(N_train=6600,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-069",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 84.997,
+      "detail": "clean_benchmark_split(N_train=6120,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-070",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 167.485,
+      "detail": "clean_benchmark_split(N_train=6280,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-071",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 102.463,
+      "detail": "clean_benchmark_split(N_train=6440,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-072",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 186.905,
+      "detail": "clean_benchmark_split(N_train=6600,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-073",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 141.72,
+      "detail": "clean_benchmark_split(N_train=6120,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-074",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 74.497,
+      "detail": "clean_benchmark_split(N_train=6280,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-075",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 70.449,
+      "detail": "clean_benchmark_split(N_train=6440,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-076",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 112.557,
+      "detail": "clean_benchmark_split(N_train=6600,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-077",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 170.576,
+      "detail": "clean_benchmark_split(N_train=6120,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-078",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 192.649,
+      "detail": "clean_benchmark_split(N_train=6280,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-079",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 132.573,
+      "detail": "clean_benchmark_split(N_train=6440,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-080",
+      "ground_truth_leaky": false,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": false,
+      "latency_ms": 99.551,
+      "detail": "clean_benchmark_split(N_train=6600,N_test=16)"
+    },
+    {
+      "scenario_id": "CLN-081",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 240.565,
+      "detail": "clean_causal_trailing_ma(w=3)"
+    },
+    {
+      "scenario_id": "CLN-082",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 128.496,
+      "detail": "clean_causal_allpass_iir(w=4)"
+    },
+    {
+      "scenario_id": "CLN-083",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 109.686,
+      "detail": "clean_causal_trailing_ma(w=5)"
+    },
+    {
+      "scenario_id": "CLN-084",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 82.384,
+      "detail": "clean_causal_allpass_iir(w=6)"
+    },
+    {
+      "scenario_id": "CLN-085",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 61.632,
+      "detail": "clean_causal_trailing_ma(w=7)"
+    },
+    {
+      "scenario_id": "CLN-086",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 116.27,
+      "detail": "clean_causal_allpass_iir(w=8)"
+    },
+    {
+      "scenario_id": "CLN-087",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 71.785,
+      "detail": "clean_causal_trailing_ma(w=9)"
+    },
+    {
+      "scenario_id": "CLN-088",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 121.848,
+      "detail": "clean_causal_allpass_iir(w=3)"
+    },
+    {
+      "scenario_id": "CLN-089",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 79.729,
+      "detail": "clean_causal_trailing_ma(w=4)"
+    },
+    {
+      "scenario_id": "CLN-090",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 93.772,
+      "detail": "clean_causal_allpass_iir(w=5)"
+    },
+    {
+      "scenario_id": "CLN-091",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 83.486,
+      "detail": "clean_causal_trailing_ma(w=6)"
+    },
+    {
+      "scenario_id": "CLN-092",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 153.391,
+      "detail": "clean_causal_allpass_iir(w=7)"
+    },
+    {
+      "scenario_id": "CLN-093",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 109.188,
+      "detail": "clean_causal_trailing_ma(w=8)"
+    },
+    {
+      "scenario_id": "CLN-094",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 71.188,
+      "detail": "clean_causal_allpass_iir(w=9)"
+    },
+    {
+      "scenario_id": "CLN-095",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 89.886,
+      "detail": "clean_causal_trailing_ma(w=3)"
+    },
+    {
+      "scenario_id": "CLN-096",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 171.373,
+      "detail": "clean_causal_allpass_iir(w=4)"
+    },
+    {
+      "scenario_id": "CLN-097",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 145.416,
+      "detail": "clean_causal_trailing_ma(w=5)"
+    },
+    {
+      "scenario_id": "CLN-098",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 82.796,
+      "detail": "clean_causal_allpass_iir(w=6)"
+    },
+    {
+      "scenario_id": "CLN-099",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 104.615,
+      "detail": "clean_causal_trailing_ma(w=7)"
+    },
+    {
+      "scenario_id": "CLN-100",
+      "ground_truth_leaky": false,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": false,
+      "latency_ms": 106.19,
+      "detail": "clean_causal_allpass_iir(w=8)"
+    },
+    {
+      "scenario_id": "LEK-001",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 598.866,
+      "detail": "leaky_forward_rolling_z(window=4)"
+    },
+    {
+      "scenario_id": "LEK-002",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 545.528,
+      "detail": "leaky_forward_rolling_z(window=5)"
+    },
+    {
+      "scenario_id": "LEK-003",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 410.417,
+      "detail": "leaky_forward_rolling_z(window=6)"
+    },
+    {
+      "scenario_id": "LEK-004",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 400.534,
+      "detail": "leaky_forward_rolling_z(window=7)"
+    },
+    {
+      "scenario_id": "LEK-005",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 441.615,
+      "detail": "leaky_forward_rolling_z(window=8)"
+    },
+    {
+      "scenario_id": "LEK-006",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 390.251,
+      "detail": "leaky_forward_rolling_z(window=9)"
+    },
+    {
+      "scenario_id": "LEK-007",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 403.733,
+      "detail": "leaky_forward_rolling_z(window=10)"
+    },
+    {
+      "scenario_id": "LEK-008",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 532.764,
+      "detail": "leaky_forward_rolling_z(window=11)"
+    },
+    {
+      "scenario_id": "LEK-009",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 381.041,
+      "detail": "leaky_forward_rolling_z(window=4)"
+    },
+    {
+      "scenario_id": "LEK-010",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 571.95,
+      "detail": "leaky_forward_rolling_z(window=5)"
+    },
+    {
+      "scenario_id": "LEK-011",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 726.549,
+      "detail": "leaky_forward_rolling_z(window=6)"
+    },
+    {
+      "scenario_id": "LEK-012",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 789.332,
+      "detail": "leaky_forward_rolling_z(window=7)"
+    },
+    {
+      "scenario_id": "LEK-013",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 1286.527,
+      "detail": "leaky_forward_rolling_z(window=8)"
+    },
+    {
+      "scenario_id": "LEK-014",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 849.045,
+      "detail": "leaky_forward_rolling_z(window=9)"
+    },
+    {
+      "scenario_id": "LEK-015",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 912.064,
+      "detail": "leaky_forward_rolling_z(window=10)"
+    },
+    {
+      "scenario_id": "LEK-016",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 1104.682,
+      "detail": "leaky_forward_rolling_z(window=11)"
+    },
+    {
+      "scenario_id": "LEK-017",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 1201.573,
+      "detail": "leaky_full_sample_zscore_scaler"
+    },
+    {
+      "scenario_id": "LEK-018",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 975.517,
+      "detail": "leaky_full_sample_minmax_scaler"
+    },
+    {
+      "scenario_id": "LEK-019",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 608.183,
+      "detail": "leaky_full_sample_zscore_scaler"
+    },
+    {
+      "scenario_id": "LEK-020",
+      "ground_truth_leaky": true,
+      "family": "FAM1_ROLLING_NORMALIZATION",
+      "predicted_leaky": true,
+      "latency_ms": 454.854,
+      "detail": "leaky_full_sample_minmax_scaler"
+    },
+    {
+      "scenario_id": "LEK-021",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 1.367,
+      "detail": "leaky_post_horizon_embargo_breach(H=2,h=2,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-022",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.109,
+      "detail": "leaky_post_horizon_embargo_breach(H=4,h=3,gap=2)"
+    },
+    {
+      "scenario_id": "LEK-023",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.093,
+      "detail": "leaky_post_horizon_embargo_breach(H=6,h=4,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-024",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.103,
+      "detail": "leaky_post_horizon_embargo_breach(H=8,h=5,gap=4)"
+    },
+    {
+      "scenario_id": "LEK-025",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.084,
+      "detail": "leaky_post_horizon_embargo_breach(H=6,h=2,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-026",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.086,
+      "detail": "leaky_post_horizon_embargo_breach(H=3,h=3,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-027",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.082,
+      "detail": "leaky_post_horizon_embargo_breach(H=5,h=4,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-028",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.098,
+      "detail": "leaky_post_horizon_embargo_breach(H=7,h=5,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-029",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.086,
+      "detail": "leaky_post_horizon_embargo_breach(H=5,h=2,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-030",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.082,
+      "detail": "leaky_post_horizon_embargo_breach(H=7,h=3,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-031",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.091,
+      "detail": "leaky_post_horizon_embargo_breach(H=4,h=4,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-032",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.145,
+      "detail": "leaky_post_horizon_embargo_breach(H=6,h=5,gap=2)"
+    },
+    {
+      "scenario_id": "LEK-033",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.082,
+      "detail": "leaky_post_horizon_embargo_breach(H=4,h=2,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-034",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.079,
+      "detail": "leaky_post_horizon_embargo_breach(H=6,h=3,gap=2)"
+    },
+    {
+      "scenario_id": "LEK-035",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.078,
+      "detail": "leaky_post_horizon_embargo_breach(H=8,h=4,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-036",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.107,
+      "detail": "leaky_post_horizon_embargo_breach(H=5,h=5,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-037",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.488,
+      "detail": "leaky_post_horizon_embargo_breach(H=3,h=2,gap=1)"
+    },
+    {
+      "scenario_id": "LEK-038",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.095,
+      "detail": "leaky_post_horizon_embargo_breach(H=5,h=3,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-039",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.089,
+      "detail": "leaky_post_horizon_embargo_breach(H=7,h=4,gap=3)"
+    },
+    {
+      "scenario_id": "LEK-040",
+      "ground_truth_leaky": true,
+      "family": "FAM2_POST_HORIZON_CPCV_EMBARGO",
+      "predicted_leaky": true,
+      "latency_ms": 0.095,
+      "detail": "leaky_post_horizon_embargo_breach(H=9,h=5,gap=5)"
+    },
+    {
+      "scenario_id": "LEK-041",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 10093.665,
+      "detail": "leaky_d20_linear_lookahead(lag=+1)"
+    },
+    {
+      "scenario_id": "LEK-042",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 14570.548,
+      "detail": "leaky_d20_linear_lookahead(lag=+2)"
+    },
+    {
+      "scenario_id": "LEK-043",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 4788.588,
+      "detail": "leaky_d20_linear_lookahead(lag=+3)"
+    },
+    {
+      "scenario_id": "LEK-044",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 4980.861,
+      "detail": "leaky_d20_linear_lookahead(lag=+4)"
+    },
+    {
+      "scenario_id": "LEK-045",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3295.894,
+      "detail": "leaky_d20_linear_lookahead(lag=+5)"
+    },
+    {
+      "scenario_id": "LEK-046",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3641.118,
+      "detail": "leaky_d20_linear_lookahead(lag=+1)"
+    },
+    {
+      "scenario_id": "LEK-047",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3036.63,
+      "detail": "leaky_d20_linear_lookahead(lag=+2)"
+    },
+    {
+      "scenario_id": "LEK-048",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 4626.272,
+      "detail": "leaky_d20_linear_lookahead(lag=+3)"
+    },
+    {
+      "scenario_id": "LEK-049",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 4159.649,
+      "detail": "leaky_d20_linear_lookahead(lag=+4)"
+    },
+    {
+      "scenario_id": "LEK-050",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 4577.681,
+      "detail": "leaky_d20_linear_lookahead(lag=+5)"
+    },
+    {
+      "scenario_id": "LEK-051",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 5007.9,
+      "detail": "leaky_d20_linear_lookahead(lag=+1)"
+    },
+    {
+      "scenario_id": "LEK-052",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3966.901,
+      "detail": "leaky_d20_linear_lookahead(lag=+2)"
+    },
+    {
+      "scenario_id": "LEK-053",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3816.198,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+3)"
+    },
+    {
+      "scenario_id": "LEK-054",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 2318.416,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+4)"
+    },
+    {
+      "scenario_id": "LEK-055",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 2741.617,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+5)"
+    },
+    {
+      "scenario_id": "LEK-056",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 2629.18,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+1)"
+    },
+    {
+      "scenario_id": "LEK-057",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 2639.068,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+2)"
+    },
+    {
+      "scenario_id": "LEK-058",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 2685.156,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+3)"
+    },
+    {
+      "scenario_id": "LEK-059",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3144.943,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+4)"
+    },
+    {
+      "scenario_id": "LEK-060",
+      "ground_truth_leaky": true,
+      "family": "FAM3_MULTIFEATURE_D20_LOOKAHEAD",
+      "predicted_leaky": true,
+      "latency_ms": 3475.015,
+      "detail": "leaky_d20_nonlinear_vol_lookahead(lag=+5)"
+    },
+    {
+      "scenario_id": "LEK-061",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 12699.009,
+      "detail": "leaky_decimal_masked_clone(N_train=6120)"
+    },
+    {
+      "scenario_id": "LEK-062",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 46.538,
+      "detail": "leaky_decimal_masked_clone(N_train=6280)"
+    },
+    {
+      "scenario_id": "LEK-063",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 55.079,
+      "detail": "leaky_decimal_masked_clone(N_train=6440)"
+    },
+    {
+      "scenario_id": "LEK-064",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 47.86,
+      "detail": "leaky_decimal_masked_clone(N_train=6600)"
+    },
+    {
+      "scenario_id": "LEK-065",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 40.537,
+      "detail": "leaky_decimal_masked_clone(N_train=6120)"
+    },
+    {
+      "scenario_id": "LEK-066",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 47.399,
+      "detail": "leaky_decimal_masked_clone(N_train=6280)"
+    },
+    {
+      "scenario_id": "LEK-067",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 52.101,
+      "detail": "leaky_decimal_masked_clone(N_train=6440)"
+    },
+    {
+      "scenario_id": "LEK-068",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 74.67,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6600)"
+    },
+    {
+      "scenario_id": "LEK-069",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 58.895,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6120)"
+    },
+    {
+      "scenario_id": "LEK-070",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 68.399,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6280)"
+    },
+    {
+      "scenario_id": "LEK-071",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 65.482,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6440)"
+    },
+    {
+      "scenario_id": "LEK-072",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 81.71,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6600)"
+    },
+    {
+      "scenario_id": "LEK-073",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 62.622,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6120)"
+    },
+    {
+      "scenario_id": "LEK-074",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 76.386,
+      "detail": "leaky_obfuscated_paraphrase(N_train=6280)"
+    },
+    {
+      "scenario_id": "LEK-075",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 81.532,
+      "detail": "leaky_unicode_multilingual_neardup(N_train=6440)"
+    },
+    {
+      "scenario_id": "LEK-076",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 69.723,
+      "detail": "leaky_unicode_multilingual_neardup(N_train=6600)"
+    },
+    {
+      "scenario_id": "LEK-077",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 76.477,
+      "detail": "leaky_unicode_multilingual_neardup(N_train=6120)"
+    },
+    {
+      "scenario_id": "LEK-078",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 75.714,
+      "detail": "leaky_unicode_multilingual_neardup(N_train=6280)"
+    },
+    {
+      "scenario_id": "LEK-079",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 68.429,
+      "detail": "leaky_unicode_multilingual_neardup(N_train=6440)"
+    },
+    {
+      "scenario_id": "LEK-080",
+      "ground_truth_leaky": true,
+      "family": "FAM4_CONTAMINATION_N6000_PLUS",
+      "predicted_leaky": true,
+      "latency_ms": 69.748,
+      "detail": "leaky_unicode_multilingual_neardup(N_train=6600)"
+    },
+    {
+      "scenario_id": "LEK-081",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 115.297,
+      "detail": "leaky_centered_ma(window=3)"
+    },
+    {
+      "scenario_id": "LEK-082",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 106.458,
+      "detail": "leaky_centered_ma(window=5)"
+    },
+    {
+      "scenario_id": "LEK-083",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 99.5,
+      "detail": "leaky_centered_ma(window=7)"
+    },
+    {
+      "scenario_id": "LEK-084",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 98.919,
+      "detail": "leaky_centered_ma(window=9)"
+    },
+    {
+      "scenario_id": "LEK-085",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 120.435,
+      "detail": "leaky_centered_ma(window=3)"
+    },
+    {
+      "scenario_id": "LEK-086",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 139.989,
+      "detail": "leaky_centered_ma(window=5)"
+    },
+    {
+      "scenario_id": "LEK-087",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 122.413,
+      "detail": "leaky_centered_ma(window=7)"
+    },
+    {
+      "scenario_id": "LEK-088",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 110.565,
+      "detail": "leaky_centered_ma(window=9)"
+    },
+    {
+      "scenario_id": "LEK-089",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 151.413,
+      "detail": "leaky_centered_ma(window=3)"
+    },
+    {
+      "scenario_id": "LEK-090",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 123.243,
+      "detail": "leaky_centered_ma(window=5)"
+    },
+    {
+      "scenario_id": "LEK-091",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 120.416,
+      "detail": "leaky_centered_ma(window=7)"
+    },
+    {
+      "scenario_id": "LEK-092",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 110.688,
+      "detail": "leaky_centered_ma(window=9)"
+    },
+    {
+      "scenario_id": "LEK-093",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 108.403,
+      "detail": "leaky_centered_ma(window=3)"
+    },
+    {
+      "scenario_id": "LEK-094",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 110.084,
+      "detail": "leaky_centered_ma(window=5)"
+    },
+    {
+      "scenario_id": "LEK-095",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 109.413,
+      "detail": "leaky_zero_phase_filtfilt(alpha=0.28)"
+    },
+    {
+      "scenario_id": "LEK-096",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 200.414,
+      "detail": "leaky_zero_phase_filtfilt(alpha=0.32)"
+    },
+    {
+      "scenario_id": "LEK-097",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 385.028,
+      "detail": "leaky_zero_phase_filtfilt(alpha=0.36)"
+    },
+    {
+      "scenario_id": "LEK-098",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 171.522,
+      "detail": "leaky_zero_phase_filtfilt(alpha=0.40)"
+    },
+    {
+      "scenario_id": "LEK-099",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 139.577,
+      "detail": "leaky_zero_phase_filtfilt(alpha=0.44)"
+    },
+    {
+      "scenario_id": "LEK-100",
+      "ground_truth_leaky": true,
+      "family": "FAM5_CENTERED_MA_FILTER",
+      "predicted_leaky": true,
+      "latency_ms": 129.97,
+      "detail": "leaky_zero_phase_filtfilt(alpha=0.48)"
+    }
+  ],
+  "jcs_sha256": "3baebc0cf8153e6c82e55c4b6d3ee6ede8f8127000a44ee6e559e6406dcacc97"
+}

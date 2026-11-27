@@ -4,26 +4,29 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leakspec-kk"
-version = "2.0.0"
-description = "Zero-dependency Kramers-Kronig spectral dispersion and multivariate Hotelling-Martingale lookahead-leakage auditor for time-series feature stores."
+version = "2.7.0"
+description = "Zero-dependency 5-layer causal, statistical, and benchmark-contamination auditor: Lopez de Prado post-horizon CPCV & PBO, Westfall-Young Target-MI & Kramers-Kronig spectral causality, Pigeonhole Multi-Block SimHash64/MinHash-LSH, OASIS SARIF v2.1.0, and Pure-Init Lean 4 proofs."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
 authors = [
-  {name = "AlpLab Research"}
+  {name = "Alp Albayrak"}
 ]
 keywords = [
   "lookahead-bias",
   "data-leakage",
+  "combinatorial-purged-cross-validation",
+  "backtest-overfitting",
   "kramers-kronig",
-  "time-series",
-  "feature-store",
-  "quant-finance",
-  "mlops",
-  "causality"
+  "mutual-information",
+  "benchmark-contamination",
+  "simhash",
+  "minhash-lsh",
+  "sarif",
+  "lean4"
 ]
 classifiers = [
-  "Development Status :: 4 - Beta",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Science/Research",
   "Intended Audience :: Financial and Insurance Industry",
   "Intended Audience :: Developers",
@@ -32,6 +35,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
   "Topic :: Scientific/Engineering :: Mathematics",
   "Topic :: Scientific/Engineering :: Physics",
   "Topic :: Software Development :: Quality Assurance"
@@ -41,10 +45,14 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
 
+[project.urls]
+Homepage = "https://alpalbayrak91-boop.github.io/leakspec-cli/"
+Repository = "https://github.com/alpalbayrak91-boop/leakspec-cli"
+Issues = "https://github.com/alpalbayrak91-boop/leakspec-cli/issues"
+Security = "https://github.com/alpalbayrak91-boop/leakspec-cli/security/advisories"
+
 [project.scripts]
 leakspec = "leakspec.cli:main"
-
-# Add [project.urls] once the public repository URL is live.
 
 [tool.setuptools]
 package-dir = {"" = "src"}

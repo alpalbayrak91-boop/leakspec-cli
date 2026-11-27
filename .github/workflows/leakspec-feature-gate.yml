@@ -1,15 +1,58 @@
-name: LeakSpec Feature Gate
+name: LeakSpec v2.7.0 Verification & SARIF Gate
 
 on:
+  pull_request:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
-  unit-tests:
+  verify-and-audit:
+    name: LeakSpec v2.7.0 Unit Tests & 5-Layer SARIF Gate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - name: Run leakspec tests
-        run: PYTHONPATH=src python -m unittest discover -s tests -v
+          python-version: "3.12"
+
+      - name: Install leakspec-kk (zero runtime dependencies)
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install --no-deps .
+
+      - name: Run full unittest verification suite
+        run: python3 -W error::DeprecationWarning -m unittest discover -s tests -p "test_*.py" -v
+
+      - name: Run clean 5-layer SARIF v2.1.0 verification gate
+        run: |
+          mkdir -p reports/leakspec
+          leakspec audit-v27 \
+            --mode clean \
+            --n-rows 400 \
+            --json-out reports/leakspec/receipt.json \
+            --sarif-out reports/leakspec/leakspec.sarif
+
+      - name: Upload RFC 8785 + RFC 6962 audit receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: leakspec-v270-audit-receipt
+          path: reports/leakspec/
+          retention-days: 30
+
+      - name: Upload SARIF 2.1.0 annotations to GitHub Code Scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: reports/leakspec/leakspec.sarif
+          category: leakspec-v270-5layer
